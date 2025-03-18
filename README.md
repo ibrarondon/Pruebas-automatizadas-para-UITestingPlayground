@@ -1,45 +1,39 @@
-# Pruebas automatizadas de UI para la aplicación web de Urban Routes
+# Pruebas automatizadas de UI para la aplicación web de UI Test Automation Playground
 
-Urban Routes es una proveedora de movilidad con diversas opciones de transporte. Desarrollé pruebas automatizadas de UI para las características al solicitar un taxi de categoría "Comfort". 
+UI Test Automation Playground es una plataforma para practicar habilidades de pruebas automatizadas de interfaz de usuario.
 
 ### Descripción:
 
 - El proyecto se desarrolló con Selenium WebDriver y POM, haciendo uso de Python como lenguaje de programación.
-- Se crearon 9 pruebas para las funciones de: configuración de ruta, selección de tarifa "Comfort", agregar número de teléfono, agregar tarjeta de crédito, escribir un mensaje para el taxista, pedir manta y pañuelos, pedir 2 helados, verificación de solicitud de taxi y verificación de información del taxista.
-- Para la prueba de información del conductor se llenaron todos los campos necesarios para la solicitud.
-- El archivo data.py contiene la información que se envía a la solicitud: ruta, número de teléfono, datos de la tarjeta, mensaje al conductor y URL del servidor de Urban Routes.
-- Se modificó el mensaje para el conductor a una longitud menor a 24 caracteres, que es la máxima adecuada para ese campo.
-
+- Se crearon pruebas para interactuar con elementos dinámicos: alertas, elementos en movimiento, elementos con atributos cambiantes, elementos con valores variables y fuera del foco visible del usuario.
+- Se crearon pruebas para elementos de tipo input y textarea, para cargar archivos, para realizar acciones con el mouse y teclado, así como interactuar con elementos en iframes y shadow DOM. 
+- El archivo example_file.txt es utilizado para la prueba de carga de archivos.
+- Este proyecto se enfoca más en el aprendizaje de interacciones con elementos de una página web que con el diseño de casos de pruebas exhaustivos. 
 
 ### Requisitos:
-- Necesitas tener instalados el paquete pytest para ejecutar las pruebas. PONER SELENIUM Y PYNPUT
-- Para instalar el paquete usa el comando pip pytest
-- Debes contar con los archivos data.py y main.py
+- Necesitas tener instalados el paquete pytest y pynput para ejecutar las pruebas, así como los drivers de Selenium Web Driver para Google Chrome.
+- Para instalar los paquetes usa los comandos pip pytest y pip pynput.
+- Debes contar con los archivos data.py, main.py y example_file.txt.
 - Antes de ejecutar las pruebas asegurarse de tener las configuraciones de pytest adecuadas.
-- Ejecuta todas las pruebas con el comando pytest.
-- Actualizar la URL del servidor antes de ejecutar alguna prueba.
-- La URL del servidor debe tener el parámetro ?lng=es porque hay búsquedas y assert que utilizan palabras en español.
-- Revisar los localizadores al hacerse actualizaciones 
 
 ### Herramientas utilizadas:
 - Pycharm
-- Selenium
-- Postman
+- Selenium WebDriver - Chrome
 - Jira
 - POM
 
 ### Instrucciones:
 
 - Realizar una copia local del repositorio GitHub.
-- Instalar el paquete pytest.
-- Actualizar la URL del servidor contenida en la variable urban_routes_url del archivo data.py.
+- Instalar el paquete pytest y pynput.
+- Instalar Google Chrome, así como drivers de Selenium Web Driver para este navegador.
 - Para realizar las pruebas de manera grupal: hacer click en el botón Run de la clase "TestUrbanRoutes" o hacer click en Run con la opción current file seleccionada.
 - Para realizar pruebas individuales: desplegar la clase "TestUrbanRoutes" y hacer click en Run en la prueba de interés.
 
 ### Análisis de resultados y conclusiones
 
-Probé las características de la interfaz de usuario para pedir un taxi de categoría "Comfort", haciendo uso de las APIs y pruebas automatizadas. Al realizar las pruebas encontré que existen discrepancias en los textos respecto a los requisitos, no se muestra el vehículo del viaje en el mapa, no se muestra adecuadamente la información del taxi reservado, las funcionalidades al borrar campos del formulario tienen comportamientos distintos a los requeridos, hay campos de entrada que no tienen el formato de dato adecuado, así como límites mínimo y máximos incorrectos. Se recomienda al equipo de desarrollo corregir con prioridad los errores reportados relacionados a métodos de pago y usabilidad del usuario, apegándose a las condiciones de diseño, limitando correctamente los formatos en los parámetros así como sus valores mínimos y máximos.
+Realicé pruebas de usuario para interactuar con distintos elementos de la interfaz de usuario de UI Testing Playgound, donde pude experimentar distintas formas de generar una misma interacción, llegando a la conclusión que las funcionalidades se prueban según el diseño que tenga la página web. Aprendí a replicar acciones con el mouse y con el teclado, así como a interactuar con elementos en shadow DOM, elementos en iFrames y alertas emergentes, logrando implementar con éxito las esperas y completar el diseño de pruebas requerido para cada elemento. La página web tiene un comportamiento bastante robusto y bien diseñado, pero se encontró y se reportó un error al introducir un usuario inválido en "Sample App"; reporte que puede ser encontrado en la carpeta Bugs. 
 
-[Reporte de bugs en JIRA de UI para Urban Routes](https://drive.google.com/uc?id=1rqcf9nlp56UQTTyngQdeGd5wgGk_hPi-&export=download) 
+[Reporte de bugs en JIRA de UI para Urban Routes](https://github.com/ibrarondon/Pruebas-automatizadas-para-UITestingPlayground/blob/e9a36951b95e2305976088c830284c6a43a06ba6/Bugs/UITEST%20bug%20report.pdf) 
 
 *Desarrollado por: Ibrahim Rondón - c13 QA Engineer, TripleTen*

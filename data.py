@@ -1,3 +1,5 @@
+### Links and URL endpoints for testing ###
+
 automation_playground_url = 'http://uitestingplayground.com/'
 dynamic_id_url = 'dynamicid'
 class_attribute_url = 'classattr'
