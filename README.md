@@ -27,7 +27,8 @@ UI Test Automation Playground es una plataforma para practicar habilidades de pr
 - Realizar una copia local del repositorio GitHub.
 - Instalar el paquete pytest y pynput.
 - Instalar Google Chrome, así como drivers de Selenium Web Driver para este navegador.
-- Para realizar las pruebas de manera grupal: hacer click en el botón Run de la clase "TestUrbanRoutes" o hacer click en Run con la opción current file seleccionada.
+- Para ejecutar las pruebas usar el comando pytest main.py en la terminal
+- Para ejecutar las pruebas también puedes hacer click en el botón Run de la clase "TestUrbanRoutes" o hacer click en Run con la opción current file seleccionada en el archivo main.py.
 - Para realizar pruebas individuales: desplegar la clase "TestUrbanRoutes" y hacer click en Run en la prueba de interés.
 
 ### Análisis de resultados y conclusiones
