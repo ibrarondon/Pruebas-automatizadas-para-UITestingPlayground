@@ -14,16 +14,16 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 class UITestingPlayground:
     footer = (By. ID, "footer") #Footer locator to know when the web is loaded
-    button_with_static_ID = (By.ID, "114a2baa-cc69-1ba1-e615-0de91881cee5")  # Button with dynamic ID
-    button_with_dynamic_ID = (By.CLASS_NAME, "btn-primary") #Button with dynamic ID
-    blue_button_by_class = (By.CLASS_NAME, "btn-primary") #Blue button
-    hidden_layer_button = (By.CSS_SELECTOR, ".btn.btn-success") #hidden layer green button
-    load_delay_button = (By.CLASS_NAME, "btn-primary")
-    ajax_button = (By.CLASS_NAME, "btn-primary")
-    ajax_label = (By.CSS_SELECTOR, ".bg-success")
-    client_side_delay_button = (By.CLASS_NAME, "btn-primary")
-    client_side_text_element = (By.CSS_SELECTOR, ".bg-success")
-    click_button = (By.ID, "badButton")
+    button_with_static_ID = (By.ID, "114a2baa-cc69-1ba1-e615-0de91881cee5")  # Button with static ID in Dynamic ID page
+    button_with_dynamic_ID = (By.CLASS_NAME, "btn-primary") #Button with dynamic ID in Dynamic ID page
+    blue_button_by_class = (By.CLASS_NAME, "btn-primary") #Blue button in Class Attribute page
+    hidden_layer_button = (By.CSS_SELECTOR, ".btn.btn-success") #Green button in Hidden Layers page
+    load_delay_button = (By.CLASS_NAME, "btn-primary") #Button in Load Delays page
+    ajax_button = (By.CLASS_NAME, "btn-primary") #Button in AJAX Data page
+    ajax_label = (By.CSS_SELECTOR, ".bg-success") #Success Label in AJAX Data page
+    client_side_delay_button = (By.CLASS_NAME, "btn-primary") #Button in Client Side Delay page
+    client_side_text_element = (By.CSS_SELECTOR, ".bg-success") #Success Label in Client Side Delay page
+    click_button = (By.ID, "badButton") #Button in Click page
     updating_button = (By.ID, "updatingButton")
     input_bar_updating_button = (By.ID, "newButtonName")
     scrollbars_button = (By.ID, "hidingButton") #Button hidden. Need to scroll to find it
@@ -83,19 +83,19 @@ class UITestingPlayground:
     def __init__(self, driver):
         self.driver = driver
 
-    def find_static_ID_button(self):
+    def find_static_ID_button(self): #Find static ID button and return ID in Dynamic ID page
         WebDriverWait(self.driver, 5).until(expected_conditions.visibility_of_element_located(self.footer))
         return len(self.driver.find_elements(*self.button_with_static_ID))
 
-    def find_dynamic_ID_button(self):
+    def find_dynamic_ID_button(self): #Find dynamic ID button and return ID in Dynamic ID page
         WebDriverWait(self.driver, 5).until(expected_conditions.visibility_of_element_located(self.footer))
         return len(self.driver.find_elements(*self.button_with_dynamic_ID))
 
-    def click_blue_button_by_class(self):
+    def click_blue_button_by_class(self): #Click blue button in Class Attribute page
         WebDriverWait(self.driver, 5).until(expected_conditions.visibility_of_element_located(self.footer))
         self.driver.find_element(*self.blue_button_by_class).click() # Clicks the blue button
 
-    def click_green_hidden_button(self):
+    def click_green_hidden_button(self): #Click green button in Hidden Layers page
         WebDriverWait(self.driver, 5).until(expected_conditions.visibility_of_element_located(self.footer))
         self.driver.find_element(*self.hidden_layer_button).click()  # Clicks the green button
         try:
@@ -106,25 +106,25 @@ class UITestingPlayground:
             green_button_status = False
             return green_button_status
 
-    def wait_until_button_appears(self):
+    def wait_until_button_appears(self): #Wait until button appears in Load Delays page
         WebDriverWait(self.driver, 8).until(expected_conditions.element_to_be_clickable(self.load_delay_button))
         return True
 
-    def wait_until_ajax_response_shows_up(self):
+    def wait_until_ajax_response_shows_up(self): #Wait for element in AJAX Data page
         WebDriverWait(self.driver, 5).until(expected_conditions.visibility_of_element_located(self.footer))
         self.driver.find_element(*self.ajax_button).click()
         WebDriverWait(self.driver, 15).until(expected_conditions.visibility_of_element_located(self.ajax_label))
         return self.driver.find_element(*self.ajax_label)
 
-    def click_client_side_delay_button(self):
+    def click_client_side_delay_button(self): #Click button in Client Side Delay page
         WebDriverWait(self.driver, 5).until(expected_conditions.visibility_of_element_located(self.footer))
         self.driver.find_element(*self.client_side_delay_button).click()
 
-    def wait_for_client_element_to_show_up(self):
+    def wait_for_client_element_to_show_up(self): #Wait for element in Client Side Delay page
         WebDriverWait(self.driver, 15).until(expected_conditions.visibility_of_element_located(self.client_side_text_element))
         return self.driver.find_element(*self.client_side_text_element)
 
-    def get_button_color(self):
+    def get_button_color(self): #Get button color in Click page
         WebDriverWait(self.driver, 5).until(expected_conditions.visibility_of_element_located(self.footer))
         self.driver.find_element(*self.click_button).click()
         action = ActionChains(self.driver)
@@ -135,15 +135,15 @@ class UITestingPlayground:
         self.driver.find_element(*self.click_button).click()
         return background_color_hex
 
-    def set_new_button_name(self,name):
+    def set_new_button_name(self,name): #Set new name for button in Text Input page
         WebDriverWait(self.driver, 5).until(expected_conditions.element_to_be_clickable(self.updating_button))
         self.driver.find_element(*self.input_bar_updating_button).send_keys(name)
         self.driver.find_element(*self.updating_button).click()
 
-    def get_new_button_name(self):
+    def get_new_button_name(self): #Get name of the button in Text Input page
         return self.driver.find_element(*self.updating_button)
 
-    def scroll_to_button(self):
+    def scroll_to_button(self): #Scrolls until button in Scrollbars page is visible
         WebDriverWait(self.driver, 5).until(expected_conditions.visibility_of_element_located(self.footer))
         element = self.driver.find_element(*self.scrollbars_button)
         action = ActionChains(self.driver)
@@ -151,12 +151,12 @@ class UITestingPlayground:
         element.click()
         return element.is_displayed()
 
-    def get_data_from_dynamic_table(self):
+    def get_data_from_dynamic_table(self): #Get data from dynamic table in Dynamic Table page
         WebDriverWait(self.driver, 5).until(expected_conditions.visibility_of_element_located(self.footer))
         table_data = self.driver.find_element(*self.dynamic_table_data).text
         return table_data
 
-    def get_reference_data_from_dynamic_table(self):
+    def get_reference_data_from_dynamic_table(self): #Get data from reference in Dynamic Table page
         WebDriverWait(self.driver, 5).until(expected_conditions.visibility_of_element_located(self.footer))
         reference_data = self.driver.find_element(*self.dynamic_data_reference).text
         return reference_data
@@ -263,6 +263,7 @@ class UITestingPlayground:
 
     def generate_guid(self): #Interact with Shadow DOM to generate a GUID, copy to clipboard and get text from input
         WebDriverWait(self.driver, 5).until(expected_conditions.visibility_of_element_located(self.guid_generator))
+        pyperclip.copy('')
         shadow = self.driver.find_element(*self.guid_generator).shadow_root #Obtains shadow object
         shadow.find_element(By.CSS_SELECTOR, "button.button-generate").click()
         shadow.find_element(By.CSS_SELECTOR, "button.button-copy").click()
@@ -480,24 +481,30 @@ class UITestingPlayground:
             expected_conditions.element_to_be_clickable(self.auto_wait_apply_3s_button))
         self.driver.find_element(*self.auto_wait_apply_3s_button).click()
         opstatus = self.driver.find_element(*self.auto_wait_operation_status).text
-        time.sleep(3)
+        self.wait_apply_time()
         return opstatus
 
-    def click_apply_5s_button(self): #Clicks the Apply 3s button
+    def click_apply_5s_button(self): #Clicks the Apply 5s button
         WebDriverWait(self.driver, 5).until(
             expected_conditions.element_to_be_clickable(self.auto_wait_apply_5s_button))
         self.driver.find_element(*self.auto_wait_apply_5s_button).click()
         opstatus = self.driver.find_element(*self.auto_wait_operation_status).text
-        time.sleep(5)
+        self.wait_apply_time()
         return opstatus
 
-    def click_apply_10s_button(self): #Clicks the Apply 3s button
+    def click_apply_10s_button(self): #Clicks the Apply 10s button
         WebDriverWait(self.driver, 5).until(
             expected_conditions.element_to_be_clickable(self.auto_wait_apply_10s_button))
         self.driver.find_element(*self.auto_wait_apply_10s_button).click()
         opstatus = self.driver.find_element(*self.auto_wait_operation_status).text
-        time.sleep(10)
+        self.wait_apply_time()
         return opstatus
+
+    def wait_apply_time(self): #Wait until element is interactable
+        opstatus = self.driver.find_element(*self.auto_wait_operation_status).text
+        while opstatus != "Target element state restored.":
+            opstatus = self.driver.find_element(*self.auto_wait_operation_status).text
+        assert opstatus == "Target element state restored."
 
     def click_auto_wait_target(self): #Clicks the target element
         self.driver.find_element(*self.auto_wait_target_element).click()
